@@ -69,7 +69,7 @@
 
         /* গ্লোয়িং কার্ড ইফেক্ট */
         .glow-card {
-            background: rgba(18, 18, 28, 0.75);
+            background: rgba(18, 18, 28, 0.78);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 215, 0, 0.25);
             box-shadow: 0 0 30px rgba(255, 165, 0, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.03);
@@ -80,12 +80,30 @@
             box-shadow: 0 0 40px rgba(255, 0, 127, 0.25), inset 0 0 25px rgba(255, 215, 0, 0.08);
         }
 
+        /* ফটো ফ্রেম যাতে ছবি স্ক্রিনের বাইরে না যায় এবং পুরোটা সুন্দরভাবে দেখা যায় */
+        .smart-photo-box {
+            background: radial-gradient(circle at center, #1a1a2e 0%, #090910 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .smart-photo-box img {
+            width: 100%;
+            height: auto;
+            max-height: 62vh; /* মোবাইল ও ডেস্কটপ স্ক্রিনে পারফেক্ট ফিট হওয়ার জন্য */
+            object-fit: contain; /* ছবি যাতে কেটে না যায় এবং সম্পূর্ণ দেখা যায় */
+            display: block;
+        }
+
         /* সোয়াইপ/ফ্লিপ মেমোরিজ কার্ড স্টাইল */
         .card-stack {
             position: relative;
             width: 100%;
             max-width: 340px;
-            height: 440px;
+            height: 430px;
             margin: 0 auto;
             perspective: 1000px;
             touch-action: pan-y;
@@ -99,16 +117,27 @@
             height: 100%;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 212, 255, 0.3);
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            background: #111;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 212, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.25);
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0b0b12 100%);
             cursor: grab;
             user-select: none;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+            transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .swipe-card:active {
             cursor: grabbing;
+        }
+
+        .swipe-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* পুরো ফটোটা কার্ডের ভেতরে স্পষ্ট দেখাবে */
+            padding-bottom: 65px; /* নিচের লেখার জন্য জায়গা */
+            pointer-events: none;
         }
 
         /* বেলুন ওড়ার অ্যানিমেশন */
@@ -137,13 +166,13 @@
 
         /* স্মুথ ফেড ইন অ্যানিমেশন */
         .fade-in-up {
-            animation: fadeInUp 0.7s ease forwards;
+            animation: fadeInUp 0.6s ease forwards;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(25px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -224,16 +253,16 @@
             </h2>
 
             <div class="glow-card rounded-3xl p-4 sm:p-6 max-w-md mx-auto">
-                <div class="relative rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-2xl group">
-                    <!-- ImgBB লিংক থেকে সরাসরি ইমেজ লোড (ডাইরেক্ট ও ফলব্যাক সাপোর্ট সহ) -->
+                <div class="relative rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-2xl group smart-photo-box flex-col">
+                    <!-- ImgBB লিংক থেকে সরাসরি ইমেজ লোড (ডাইরেক্ট ও অটো-রিজলভার সাপোর্ট সহ) -->
                     <img 
                         id="hero-photo"
-                        src="https://i.ibb.co/jkJP8pyt/photo.jpg" 
+                        src="https://i.ibb.co/jkJP8pyt/image.jpg" 
                         data-ibb="https://ibb.co/jkJP8pyt"
                         alt="প্রিয়দীপ দা" 
-                        class="w-full h-auto max-h-[480px] object-cover transition-transform duration-500 group-hover:scale-105"
+                        class="transition-transform duration-500 group-hover:scale-105"
                     >
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end justify-center p-4">
+                    <div class="w-full bg-gradient-to-t from-black via-black/90 to-transparent py-3 px-4">
                         <span class="handwriting-body text-xl sm:text-2xl text-amber-300 font-bold drop-shadow">
                             হ্যাপি বার্থডে ভাই! 🥳🔥
                         </span>
@@ -258,38 +287,36 @@
                 <!-- কার্ড ২ (পেছনে থাকবে প্রথমে) -->
                 <div class="swipe-card" id="card-2" data-index="1" style="transform: scale(0.94) translateY(14px); z-index: 1;">
                     <img 
-                        src="https://i.ibb.co/ynnjbBnH/memory2.jpg" 
+                        src="https://i.ibb.co/ynnjbBnH/image.jpg" 
                         data-ibb="https://ibb.co/ynnjbBnH"
                         alt="মেমোরি ২" 
-                        class="w-full h-full object-cover pointer-events-none"
                     >
-                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-5 text-left">
-                        <span class="px-3 py-1 bg-pink-600/80 rounded-full text-xs font-bold">মেমোরি #২</span>
-                        <p class="handwriting-body text-xl text-white mt-1">পাগলামির দিনগুলো! 😂✌️</p>
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/90 to-transparent p-4 text-left">
+                        <span class="px-3 py-0.5 bg-pink-600 rounded-full text-xs font-bold">মেমোরি #২</span>
+                        <p class="handwriting-body text-lg sm:text-xl text-white mt-1">পাগলামির দিনগুলো! 😂✌️</p>
                     </div>
                 </div>
 
                 <!-- কার্ড ১ (সামনে থাকবে প্রথমে) -->
                 <div class="swipe-card" id="card-1" data-index="0" style="transform: scale(1) translateY(0px); z-index: 2;">
                     <img 
-                        src="https://i.ibb.co/g1Kk5QD/memory1.jpg" 
+                        src="https://i.ibb.co/g1Kk5QD/image.jpg" 
                         data-ibb="https://ibb.co/g1Kk5QD"
                         alt="মেমোরি ১" 
-                        class="w-full h-full object-cover pointer-events-none"
                     >
-                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-5 text-left">
-                        <span class="px-3 py-1 bg-cyan-600/80 rounded-full text-xs font-bold">মেমোরি #১</span>
-                        <p class="handwriting-body text-xl text-white mt-1">ভাই-ব্রাদার ফরএভার! 🤝🔥</p>
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/90 to-transparent p-4 text-left">
+                        <span class="px-3 py-0.5 bg-cyan-600 rounded-full text-xs font-bold">মেমোরি #১</span>
+                        <p class="handwriting-body text-lg sm:text-xl text-white mt-1">ভাই-ব্রাদার ফরএভার! 🤝🔥</p>
                     </div>
                 </div>
             </div>
 
-            <!-- ম্যানুয়াল ফ্লিপ/সোয়াইপ বাটন (সুবিধার জন্য) -->
-            <div class="flex justify-center gap-4 pt-2">
-                <button onclick="flipCard('left')" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-sm font-semibold transition flex items-center gap-2">
+            <!-- ম্যানুয়াল ফ্লিপ/সোয়াইপ বাটন -->
+            <div class="flex justify-center gap-4 pt-4">
+                <button type="button" onclick="flipCard('left')" class="px-5 py-2.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 border border-white/30 text-sm sm:text-base font-semibold transition flex items-center gap-2 cursor-pointer">
                     ⬅️ বামে সরাও
                 </button>
-                <button onclick="flipCard('right')" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-sm font-semibold transition flex items-center gap-2">
+                <button type="button" onclick="flipCard('right')" class="px-5 py-2.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 border border-white/30 text-sm sm:text-base font-semibold transition flex items-center gap-2 cursor-pointer">
                     ডানে সরাও ➡️
                 </button>
             </div>
@@ -307,7 +334,7 @@
                 </p>
 
                 <!-- গিফট বাটন -->
-                <button id="gift-button" onclick="triggerGiftCelebration()" class="gift-btn text-white font-bold text-xl sm:text-2xl px-8 py-4 rounded-2xl shadow-2xl transform transition hover:scale-105 active:scale-95 cursor-pointer">
+                <button type="button" id="gift-button" onclick="triggerGiftCelebration()" class="gift-btn text-white font-bold text-xl sm:text-2xl px-8 py-4 rounded-2xl shadow-2xl transform transition hover:scale-105 active:scale-95 cursor-pointer">
                     এই না তোর গিফট 🎁✨
                 </button>
 
@@ -320,12 +347,11 @@
                     </div>
 
                     <!-- মজার মিম ফটো -->
-                    <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400/50 shadow-xl">
+                    <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400/50 shadow-xl smart-photo-box">
                         <img 
-                            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW55bW55bW55bW55bW55bW55bW55bW55bW55bW55bW55/26u4cqiYI30juCOGY/giphy.gif" 
+                            src="https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif" 
                             onerror="this.src='https://placehold.co/400x300/1a1a2e/ffd700?text=Party+First+Ladle!'"
                             alt="খুশি হওয়ার মিম" 
-                            class="w-full h-auto object-cover"
                         >
                     </div>
 
@@ -345,15 +371,15 @@
 
                 <!-- তিনটি অপশন বাটন -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto pt-2">
-                    <button onclick="handleRating('bad')" class="p-4 rounded-2xl bg-red-600/20 hover:bg-red-600/40 border border-red-500/50 text-red-200 font-bold text-lg transition transform hover:scale-105 active:scale-95">
+                    <button type="button" onclick="handleRating('bad')" class="p-4 rounded-2xl bg-red-600/25 hover:bg-red-600/45 border border-red-500/50 text-red-200 font-bold text-lg transition transform hover:scale-105 active:scale-95 cursor-pointer">
                         😒 খুব খারাপ
                     </button>
                     
-                    <button onclick="handleRating('good')" class="p-4 rounded-2xl bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/50 text-blue-200 font-bold text-lg transition transform hover:scale-105 active:scale-95">
+                    <button type="button" onclick="handleRating('good')" class="p-4 rounded-2xl bg-blue-600/25 hover:bg-blue-600/45 border border-blue-500/50 text-blue-200 font-bold text-lg transition transform hover:scale-105 active:scale-95 cursor-pointer">
                         🙂 ভালো
                     </button>
                     
-                    <button onclick="handleRating('excellent')" class="p-4 rounded-2xl bg-emerald-600/20 hover:bg-emerald-600/40 border border-emerald-500/50 text-emerald-200 font-bold text-lg transition transform hover:scale-105 active:scale-95">
+                    <button type="button" onclick="handleRating('excellent')" class="p-4 rounded-2xl bg-emerald-600/25 hover:bg-emerald-600/45 border border-emerald-500/50 text-emerald-200 font-bold text-lg transition transform hover:scale-105 active:scale-95 cursor-pointer">
                         🤩 এক্সিলেন্ট
                     </button>
                 </div>
@@ -366,14 +392,13 @@
                         <p class="handwriting-body text-xl sm:text-2xl text-red-300 font-bold">
                             "আমি জানি এটা তোর মনের কথা নয়, সত্যি করে রেট কর—এটাতে হবে না! 🤨"
                         </p>
-                        <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-red-500/50 shadow-2xl">
+                        <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-red-500/50 shadow-2xl smart-photo-box flex-col">
                             <img 
-                                src="https://i.ibb.co/G31VQ3RD/jhoot.jpg" 
+                                src="https://i.ibb.co/G31VQ3RD/image.jpg" 
                                 data-ibb="https://ibb.co/G31VQ3RD"
                                 alt="Jhoot Bol Raha Hai Meme" 
-                                class="w-full h-auto object-cover"
                             >
-                            <div class="bg-black/90 py-2 px-4 text-yellow-400 font-bold text-lg">
+                            <div class="w-full bg-black/95 py-2.5 px-4 text-yellow-400 font-bold text-lg">
                                 "ঝুট বল রাহা হ্যায়! 🤥"
                             </div>
                         </div>
@@ -393,34 +418,8 @@
                         <p class="handwriting-body text-2xl sm:text-3xl text-emerald-300 font-bold">
                             "এই তো লাইনে এসেছিস! তবে একটু বেশিই হয়ে গেল... 😂🎬"
                         </p>
-                        <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-emerald-400/50 shadow-2xl">
+                        <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-emerald-400/50 shadow-2xl smart-photo-box flex-col">
                             <img 
-                                src="https://i.ibb.co/htTNDQn/overacting.jpg" 
+                                src="https://i.ibb.co/htTNDQn/image.jpg" 
                                 data-ibb="https://ibb.co/htTNDQn"
-                                alt="150 Rupiya Kaat Overacting Meme" 
-                                class="w-full h-auto object-cover"
-                            >
-                            <div class="bg-black/90 py-2.5 px-4 text-emerald-300 font-bold text-lg">
-                                "দেড়শ টাকা কাট আর ৫০ টাকা কাট ওভার অ্যাক্টিংয়ের চক্করে! ✂️💸"
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ফুটার -->
-        <footer class="text-center text-gray-500 text-xs sm:text-sm pb-6">
-            তৈরি করা হয়েছে ভালোবাসা ও প্রচুর মজা দিয়ে • শুভ ২০তম জন্মদিন প্রিয়দীপ দা ❤️
-        </footer>
-
-    </div>
-
-    <!-- জাভাস্ক্রিপ্ট লজিক -->
-    <script>
-        /**
-         * ১. ImgBB পেজ লিংক থেকে আসল ইমেজ URL অটো-লোড করার স্মার্ট ফাংশন
-         * (যাতে https://ibb.co/... লিংকগুলো ১০০% কাজ করে)
-         */
-        async function resolveImgBBImag
+                                a
