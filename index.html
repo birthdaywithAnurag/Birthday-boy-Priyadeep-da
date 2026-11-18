@@ -1,153 +1,172 @@
 ```html
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>শুভ ২০তম জন্মদিন প্রিয়দীপ দা! 🎉🎂</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>শুভ জন্মদিন প্রিয়দীপ দা! 🎂🔥</title>
     
-    <!-- Tailwind CSS লোড করা হচ্ছে স্টাইলিংয়ের জন্য -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- বাংলা টানা হাতের লেখা ও স্টাইলিশ ফন্ট (Google Fonts) -->
+    <!-- Google Fonts: Bengali Stylish & Handwriting Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Atma:wght@500;600;700&family=Galada&family=Hind+Siliguri:wght@400;600;700&family=Mina:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Galada&family=Hind+Siliguri:wght@400;600;700&family=Mina:wght@700&display=swap" rel="stylesheet">
     
-    <!-- কনফেটি এবং বেলুন সেলিব্রেশনের জন্য লাইব্রেরি -->
+    <!-- Canvas Confetti for Balloons & Celebration -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* কাস্টম স্টাইল এবং অ্যানিমেশন */
+        /* কাস্টম ফন্ট ও অ্যানিমেশন সেটআপ */
+        :root {
+            --font-handwriting: 'Galada', cursive;
+            --font-body: 'Hind Siliguri', sans-serif;
+            --font-headline: 'Mina', sans-serif;
+        }
+
         body {
             background-color: #050508;
             color: #ffffff;
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: var(--font-body);
             overflow-x: hidden;
-            margin: 0;
-            padding: 0;
+            scroll-behavior: smooth;
         }
 
-        /* টানা হাতের লেখা ও স্টাইলিশ বাংলা হেডলাইন */
+        /* টানা হাতের লেখা ও রঙিন গ্লোয়িং টেক্সট */
         .handwriting-title {
-            font-family: 'Galada', cursive;
-            background: linear-gradient(90deg, #ff007f, #ff8c00, #ffd700, #00ff88, #00d4ff, #ff007f);
+            font-family: var(--font-handwriting);
+            background: linear-gradient(90deg, #ff007f, #ff8c00, #ffd700, #00ff88, #00d2ff, #ff007f);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: rainbowText 5s ease infinite;
-            text-shadow: 0 0 25px rgba(255, 0, 127, 0.3);
+            animation: gradientFlow 6s ease infinite;
+            filter: drop-shadow(0 0 12px rgba(255, 140, 0, 0.4));
             line-height: 1.4;
         }
 
-        .handwriting-body {
-            font-family: 'Atma', cursive;
+        .stylish-headline {
+            font-family: var(--font-headline);
+            background: linear-gradient(135deg, #fde047 0%, #f97316 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
         }
 
-        @keyframes rainbowText {
+        @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* জোনাকি পোকার ব্যাকগ্রাউন্ড ক্যানভাস */
-        #fireflies-canvas {
+        /* জোনাকি ক্যানভাস ব্যাকগ্রাউন্ড */
+        #firefly-canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            width: 100vw;
+            height: 100vh;
             z-index: 0;
+            pointer-events: none;
         }
 
-        /* কন্টেন্ট কন্টেইনার যাতে জোনাকির ওপরে থাকে */
-        .content-wrapper {
+        /* মেইন কন্টেন্ট কন্টেইনার */
+        .content-layer {
             position: relative;
             z-index: 10;
         }
 
-        /* গ্লোয়িং কার্ড ইফেক্ট */
-        .glow-card {
-            background: rgba(18, 18, 28, 0.78);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            box-shadow: 0 0 30px rgba(255, 165, 0, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .glow-card:hover {
-            box-shadow: 0 0 40px rgba(255, 0, 127, 0.25), inset 0 0 25px rgba(255, 215, 0, 0.08);
-        }
-
-        /* ফটো ফ্রেম যাতে ছবি স্ক্রিনের বাইরে না যায় এবং পুরোটা সুন্দরভাবে দেখা যায় */
-        .smart-photo-box {
-            background: radial-gradient(circle at center, #1a1a2e 0%, #090910 100%);
+        /* ফটো ফ্রেম - যাতে কোনো ফটো ক্রপ না হয় */
+        .uncropped-photo-container {
+            background: rgba(20, 20, 30, 0.85);
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.8);
+            border-radius: 1.25rem;
+            padding: 0.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
             overflow: hidden;
         }
 
-        .smart-photo-box img {
+        .uncropped-img {
             width: 100%;
             height: auto;
-            max-height: 62vh; /* মোবাইল ও ডেস্কটপ স্ক্রিনে পারফেক্ট ফিট হওয়ার জন্য */
-            object-fit: contain; /* ছবি যাতে কেটে না যায় এবং সম্পূর্ণ দেখা যায় */
+            max-height: 70vh;
+            object-fit: contain; /* ১০০% গ্যারান্টি: ছবি একটুও কাটবে না বা ক্রপ হবে না */
+            border-radius: 0.85rem;
             display: block;
         }
 
-        /* সোয়াইপ/ফ্লিপ মেমোরিজ কার্ড স্টাইল */
-        .card-stack {
+        /* মেমোরিজ কার্ড স্ট্যাক ও ফ্লিপ অ্যানিমেশন */
+        .card-stack-wrapper {
             position: relative;
             width: 100%;
-            max-width: 340px;
-            height: 430px;
+            max-width: 420px;
+            min-height: 460px;
             margin: 0 auto;
-            perspective: 1000px;
+            perspective: 1200px;
             touch-action: pan-y;
         }
 
-        .swipe-card {
+        .memory-card {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 212, 255, 0.3);
-            border: 3px solid rgba(255, 255, 255, 0.25);
-            background: radial-gradient(circle at center, #1a1a2e 0%, #0b0b12 100%);
-            cursor: grab;
-            user-select: none;
-            transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+            background: linear-gradient(145deg, #161622, #0d0d14);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1.5rem;
+            padding: 1rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.15);
+            transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.45s ease, z-index 0s;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
+            user-select: none;
+            cursor: grab;
         }
 
-        .swipe-card:active {
+        .memory-card:active {
             cursor: grabbing;
         }
 
-        .swipe-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* পুরো ফটোটা কার্ডের ভেতরে স্পষ্ট দেখাবে */
-            padding-bottom: 65px; /* নিচের লেখার জন্য জায়গা */
+        .memory-card.active-card {
+            z-index: 20;
+            transform: translateX(0) rotate(0deg) scale(1);
+            opacity: 1;
+            border-color: rgba(250, 204, 21, 0.6);
+        }
+
+        .memory-card.behind-card {
+            z-index: 10;
+            transform: translateX(14px) translateY(10px) rotate(3deg) scale(0.95);
+            opacity: 0.7;
             pointer-events: none;
         }
 
-        /* বেলুন ওড়ার অ্যানিমেশন */
+        .memory-card.swipe-left {
+            transform: translateX(-120%) rotate(-18deg) scale(0.9);
+            opacity: 0;
+        }
+
+        .memory-card.swipe-right {
+            transform: translateX(120%) rotate(18deg) scale(0.9);
+            opacity: 0;
+        }
+
+        /* বেলুন ফ্লোটিং অ্যানিমেশন */
         .balloon {
             position: fixed;
-            bottom: -100px;
+            bottom: -120px;
             font-size: 3rem;
             z-index: 9999;
             pointer-events: none;
-            animation: floatUp 3.5s ease-in forwards;
+            animation: floatUp 4s ease-in forwards;
         }
 
         @keyframes floatUp {
@@ -155,271 +174,298 @@
                 transform: translateY(0) rotate(0deg) scale(0.8);
                 opacity: 1;
             }
-            70% {
+            50% {
+                transform: translateY(-55vh) rotate(12deg) scale(1.1);
                 opacity: 1;
             }
             100% {
-                transform: translateY(-115vh) rotate(25deg) scale(1.3);
+                transform: translateY(-120vh) rotate(-12deg) scale(1.2);
                 opacity: 0;
             }
         }
 
-        /* স্মুথ ফেড ইন অ্যানিমেশন */
+        /* পালস গ্লো বাটন */
+        .gift-btn-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(236, 72, 153, 0.6), 0 0 30px rgba(245, 158, 11, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 28px rgba(236, 72, 153, 0.95), 0 0 50px rgba(245, 158, 11, 0.8);
+            }
+        }
+
+        /* স্মুথ রিভিল অ্যানিমেশন */
         .fade-in-up {
-            animation: fadeInUp 0.6s ease forwards;
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(25px) scale(0.97);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
-        }
-
-        /* পালস গ্লো বাটন */
-        .gift-btn {
-            background: linear-gradient(45deg, #ff0055, #ff7700, #ff0055);
-            background-size: 200% 200%;
-            animation: gradientShift 3s ease infinite, pulseGlow 2s infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 85, 0.6), 0 0 30px rgba(255, 119, 0, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(255, 0, 85, 0.9), 0 0 50px rgba(255, 119, 0, 0.7); }
         }
     </style>
 </head>
 <body class="antialiased selection:bg-pink-500 selection:text-white">
 
-    <!-- জোনাকি পোকার অ্যানিমেটেড ব্যাকগ্রাউন্ড -->
-    <canvas id="fireflies-canvas"></canvas>
+    <!-- জোনাকি চমকানোর ব্যাকগ্রাউন্ড ক্যানভাস -->
+    <canvas id="firefly-canvas"></canvas>
 
-    <!-- মূল ওয়েবসাইট কন্টেন্ট -->
-    <div class="content-wrapper max-w-3xl mx-auto px-4 py-10 sm:py-16 space-y-16">
+    <!-- ফ্লোটিং বেলুন কন্টেইনার -->
+    <div id="balloon-container"></div>
 
-        <!-- ১. হিরো ও বার্থডে উইশ সেকশন -->
+    <!-- মেইন ওয়েবসাইট কন্টেন্ট -->
+    <main class="content-layer max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-16 sm:space-y-24">
+
+        <!-- ১. হিরো সেকশন: টানা হাতের লেখা ও রঙিন হেডলাইন -->
         <header class="text-center space-y-6 pt-4">
-            <div class="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500/20 to-pink-500/20 border border-amber-400/40 text-amber-300 text-sm sm:text-base font-semibold tracking-wide shadow-lg">
-                ✨ স্পেশাল বার্থডে এডিশন ২০২৬ ✨
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-yellow-400/30 text-yellow-300 text-sm sm:text-base font-semibold tracking-wide shadow-lg">
+                <span>✨ স্পেশাল এডিশন ২০২৬ ✨</span>
             </div>
 
-            <!-- রঙ্গিন টানা হাতের লেখার হেডলাইন -->
-            <h1 class="handwriting-title text-4xl sm:text-6xl md:text-7xl font-bold py-2">
-                শুভ জন্মদিন আমাদের সুইট গার্ল প্রিয়দীপ দা! 🎂👑
+            <h1 class="handwriting-title text-4xl sm:text-6xl md:text-7xl font-bold px-2 py-2">
+                আজ আমাদের সুইট গার্ল<br>প্রিয়দীপ দা-এর বার্থডে! 🎂💖
             </h1>
 
-            <!-- বার্থডে মেসেজ বক্স -->
-            <div class="glow-card rounded-3xl p-6 sm:p-10 text-left sm:text-center space-y-5 relative overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-pink-500/20 rounded-full blur-2xl"></div>
-                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-amber-500/20 rounded-full blur-2xl"></div>
+            <p class="text-gray-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                জোনাকির আলোয় আলোকিত এই বিশেষ রাতে, নিচে স্ক্রল করে দেখে নে তোর জন্য কী কী চমক অপেক্ষা করছে... 👇🔥
+            </p>
 
-                <p class="handwriting-body text-xl sm:text-2xl md:text-3xl text-amber-100 leading-relaxed">
-                    "ভালই তো ভাই, তোর জীবনের <span class="text-pink-400 font-bold underline decoration-wavy">২০তম জন্মদিন</span> চলে এলো! ২০ বছরে ঢুকে যা! 🎉"
-                </p>
-                
-                <p class="handwriting-body text-lg sm:text-2xl text-gray-200 leading-relaxed">
-                    ভারতীয় সংবিধান অনুসারে তুই এখনো একটু ছোট, <span class="text-cyan-300 font-bold">২১ বছর হতে দে</span>—তার আগে বিয়ে করার চিন্তা একদম করিস না! 🚫💍 আর তারপর বিয়েটা করে <span class="text-yellow-300 font-bold">ভোজটা যেন ভালো দিস</span>, কোনো কিপ্টেমি চলবে না! 🍗🍛
-                </p>
-
-                <div class="p-4 rounded-2xl bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-green-500/20 border border-orange-400/30">
-                    <p class="handwriting-body text-lg sm:text-2xl text-orange-200 font-semibold">
-                        "আর চিন্তা নিস না ভাই, যতদূর মনে হচ্ছে <span class="text-orange-400 font-bold text-2xl sm:text-3xl">২০৯৯-এও বিজেপি-ই</span> থাকবে! 😎🚩"
-                    </p>
-                </div>
-            </div>
-
-            <div class="animate-bounce pt-2 text-amber-300/80 text-sm flex flex-col items-center">
-                <span>নিচে স্ক্রল কর ভাই, আসল চমক নিচে আছে</span>
-                <svg class="w-6 h-6 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
+            <div class="pt-2 animate-bounce">
+                <a href="#birthday-wish-section" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-tr from-pink-600 to-amber-500 text-white shadow-lg shadow-pink-500/30">
+                    <i data-lucide="chevron-down" class="w-6 h-6"></i>
+                </a>
             </div>
         </header>
 
-        <!-- ২. প্রথম ফটো সেকশন (প্রিয়দীপ দা-এর স্পেশাল ফটো) -->
-        <section class="space-y-6 text-center">
-            <h2 class="handwriting-title text-3xl sm:text-5xl font-bold">
-                আমাদের আজকের বার্থডে বয় (সুইট গার্ল) 🌟
-            </h2>
+        <!-- ২. বার্থডে উইশ ও সংবিধান-রাজনীতি স্পেশাল মেসেজ সেকশন -->
+        <section id="birthday-wish-section" class="relative bg-gray-900/75 backdrop-blur-md border border-pink-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="stylish-headline text-2xl sm:text-4xl font-bold">
+                    🎉 শুভ ২০তম জন্মদিন ভাই! 🎉
+                </h2>
+                <div class="h-1 w-24 bg-gradient-to-r from-pink-500 via-yellow-400 to-emerald-400 mx-auto rounded-full"></div>
+            </div>
 
-            <div class="glow-card rounded-3xl p-4 sm:p-6 max-w-md mx-auto">
-                <div class="relative rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-2xl group smart-photo-box flex-col">
-                    <!-- ImgBB লিংক থেকে সরাসরি ইমেজ লোড (ডাইরেক্ট ও অটো-রিজলভার সাপোর্ট সহ) -->
+            <!-- তোর দেওয়া হুবহু সংলাপ -->
+            <div class="bg-black/60 border border-white/10 rounded-2xl p-5 sm:p-7 text-center space-y-4 shadow-inner">
+                <p class="handwriting-title text-2xl sm:text-4xl leading-relaxed">
+                    “ভালই তো ভাই তোর জীবনের কুড়ি তম জন্মদিন চলে এলো কুড়ি বছরে ঢুকে যা, ভারতীয় সংবিধান অনুসারে তুই এখনো একটু ছোট ২১ বছর হতে দে তার আগে বিয়ে করার চিন্তা করিস না আর তারপর বিয়েটা করে ভোজটা যেন ভালো দিস আর চিন্তা নিস না যতদূর মনে হচ্ছে 2099 এও বিজেপি-ই থাকবে।”
+                </p>
+                <div class="flex justify-center gap-3 text-2xl pt-2">
+                    <span>📜⚖️</span>
+                    <span>🍛🍗</span>
+                    <span>🚩😂</span>
+                </div>
+            </div>
+
+            <!-- প্রথম ফটো: বার্থডে বয় প্রিয়দীপ দা (কোনো ক্রপ ছাড়াই সম্পূর্ণ সাইজ) -->
+            <div class="space-y-3">
+                <div class="text-center">
+                    <span class="inline-block px-4 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-sm font-semibold">
+                        👑 আমাদের আজকের সুপারস্টার 👑
+                    </span>
+                </div>
+                
+                <div class="uncropped-photo-container max-w-lg mx-auto">
                     <img 
                         id="hero-photo"
-                        src="https://i.ibb.co/jkJP8pyt/image.jpg" 
+                        src="https://ibb.co/jkJP8pyt" 
                         data-ibb="https://ibb.co/jkJP8pyt"
-                        alt="প্রিয়দীপ দা" 
-                        class="transition-transform duration-500 group-hover:scale-105"
-                    >
-                    <div class="w-full bg-gradient-to-t from-black via-black/90 to-transparent py-3 px-4">
-                        <span class="handwriting-body text-xl sm:text-2xl text-amber-300 font-bold drop-shadow">
-                            হ্যাপি বার্থডে ভাই! 🥳🔥
+                        alt="প্রিয়দীপ দা বার্থডে ফটো" 
+                        class="uncropped-img"
+                    />
+                </div>
+
+                <h3 class="handwriting-title text-3xl sm:text-5xl text-center pt-3">
+                    হ্যাপি বার্থডে ভাই! 🥳🔥
+                </h3>
+            </div>
+        </section>
+
+        <!-- ৩. মেমোরিজ সেকশন (ফ্লিপ ও সোয়াইপ কার্ড - ডান ও বাম বাটন সহ) -->
+        <section id="memories-section" class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="stylish-headline text-3xl sm:text-4xl font-bold">
+                    📸 আমাদের সেরা মেমোরিজ 📸
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base">
+                    স্ক্রল করার দরকার নেই! ছবির ওপর আঙুল দিয়ে ডানে-বামে সরাও অথবা নিচের বাটন টিপে কার্ড ফ্লিপ করো 👇
+                </p>
+            </div>
+
+            <!-- কার্ড স্ট্যাক কন্টেইনার -->
+            <div class="card-stack-wrapper" id="memory-card-container">
+                
+                <!-- মেমোরি কার্ড ১ -->
+                <div class="memory-card active-card" id="mem-card-0">
+                    <div class="flex-1 flex items-center justify-center overflow-hidden rounded-xl bg-black/50 p-1">
+                        <img 
+                            src="https://ibb.co/g1Kk5QD" 
+                            data-ibb="https://ibb.co/g1Kk5QD"
+                            alt="মেমোরি ১" 
+                            class="w-full h-full max-h-[340px] object-contain rounded-lg pointer-events-none"
+                        />
+                    </div>
+                    <div class="pt-3 text-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-yellow-400 bg-yellow-400/10 px-3 py-1 rounded-full">
+                            মেমোরি ১ / ২ • সোনালী মুহূর্ত ✨
                         </span>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- ৩. মেমোরিজ সেকশন (সোয়াইপ / ফ্লিপ কার্ড সিস্টেম) -->
-        <section class="space-y-6 text-center">
-            <div class="space-y-2">
-                <h2 class="handwriting-title text-3xl sm:text-5xl font-bold">
-                    ✨ আমাদের সেরা মেমোরিজ ✨
-                </h2>
-                <p class="text-gray-300 text-sm sm:text-base">
-                    👆 কার্ডের ওপর আঙুল দিয়ে ডানে বা বামে সরাও (Swipe করো) অথবা নিচের বাটনে চাপ দাও!
-                </p>
-            </div>
-
-            <!-- কার্ড স্ট্যাক কন্টেইনার (একটার ওপর একটা ফটো) -->
-            <div class="card-stack" id="memory-stack">
-                <!-- কার্ড ২ (পেছনে থাকবে প্রথমে) -->
-                <div class="swipe-card" id="card-2" data-index="1" style="transform: scale(0.94) translateY(14px); z-index: 1;">
-                    <img 
-                        src="https://i.ibb.co/ynnjbBnH/image.jpg" 
-                        data-ibb="https://ibb.co/ynnjbBnH"
-                        alt="মেমোরি ২" 
-                    >
-                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/90 to-transparent p-4 text-left">
-                        <span class="px-3 py-0.5 bg-pink-600 rounded-full text-xs font-bold">মেমোরি #২</span>
-                        <p class="handwriting-body text-lg sm:text-xl text-white mt-1">পাগলামির দিনগুলো! 😂✌️</p>
-                    </div>
-                </div>
-
-                <!-- কার্ড ১ (সামনে থাকবে প্রথমে) -->
-                <div class="swipe-card" id="card-1" data-index="0" style="transform: scale(1) translateY(0px); z-index: 2;">
-                    <img 
-                        src="https://i.ibb.co/g1Kk5QD/image.jpg" 
-                        data-ibb="https://ibb.co/g1Kk5QD"
-                        alt="মেমোরি ১" 
-                    >
-                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/90 to-transparent p-4 text-left">
-                        <span class="px-3 py-0.5 bg-cyan-600 rounded-full text-xs font-bold">মেমোরি #১</span>
-                        <p class="handwriting-body text-lg sm:text-xl text-white mt-1">ভাই-ব্রাদার ফরএভার! 🤝🔥</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ম্যানুয়াল ফ্লিপ/সোয়াইপ বাটন -->
-            <div class="flex justify-center gap-4 pt-4">
-                <button type="button" onclick="flipCard('left')" class="px-5 py-2.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 border border-white/30 text-sm sm:text-base font-semibold transition flex items-center gap-2 cursor-pointer">
-                    ⬅️ বামে সরাও
-                </button>
-                <button type="button" onclick="flipCard('right')" class="px-5 py-2.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 border border-white/30 text-sm sm:text-base font-semibold transition flex items-center gap-2 cursor-pointer">
-                    ডানে সরাও ➡️
-                </button>
-            </div>
-        </section>
-
-        <!-- ৪. স্পেশাল গিফট ও বেলুন সেলিব্রেশন সেকশন -->
-        <section class="space-y-6 text-center">
-            <div class="glow-card rounded-3xl p-6 sm:p-10 space-y-6">
-                <h2 class="handwriting-title text-3xl sm:text-5xl font-bold">
-                    তোর জন্য একটা স্পেশাল সারপ্রাইজ! 🎁
-                </h2>
-                
-                <p class="text-gray-300 text-base sm:text-lg">
-                    নিচের বাটনটাতে ক্লিক করে তোর বার্থডে গিফটটা নিয়ে নে ভাই! 👇
-                </p>
-
-                <!-- গিফট বাটন -->
-                <button type="button" id="gift-button" onclick="triggerGiftCelebration()" class="gift-btn text-white font-bold text-xl sm:text-2xl px-8 py-4 rounded-2xl shadow-2xl transform transition hover:scale-105 active:scale-95 cursor-pointer">
-                    এই না তোর গিফট 🎁✨
-                </button>
-
-                <!-- গিফট ক্লিক করার পর যা বেরোবে (প্রথমে লুকানো থাকবে) -->
-                <div id="gift-reveal" class="hidden space-y-5 pt-6 border-t border-white/10 fade-in-up">
-                    <div class="p-4 rounded-2xl bg-red-500/20 border border-red-500/40">
-                        <p class="text-xl sm:text-2xl md:text-3xl font-extrabold text-yellow-300 tracking-wide">
-                            "Party pahle dena hai ladle, uske bad gift milega!" 😎💸
-                        </p>
-                    </div>
-
-                    <!-- মজার মিম ফটো -->
-                    <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-yellow-400/50 shadow-xl smart-photo-box">
+                <!-- মেমোরি কার্ড ২ -->
+                <div class="memory-card behind-card" id="mem-card-1">
+                    <div class="flex-1 flex items-center justify-center overflow-hidden rounded-xl bg-black/50 p-1">
                         <img 
-                            src="https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif" 
-                            onerror="this.src='https://placehold.co/400x300/1a1a2e/ffd700?text=Party+First+Ladle!'"
-                            alt="খুশি হওয়ার মিম" 
-                        >
+                            src="https://ibb.co/ynnjbBnH" 
+                            data-ibb="https://ibb.co/ynnjbBnH"
+                            alt="মেমোরি ২" 
+                            class="w-full h-full max-h-[340px] object-contain rounded-lg pointer-events-none"
+                        />
                     </div>
+                    <div class="pt-3 text-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-pink-400 bg-pink-400/10 px-3 py-1 rounded-full">
+                            মেমোরি ২ / ২ • অমূল্য স্মৃতি 💖
+                        </span>
+                    </div>
+                </div>
 
-                    <p class="handwriting-body text-2xl sm:text-3xl text-pink-400 font-bold animate-pulse">
-                        "দেখ দেখ দেখ দেখ কেমন খুশি হচ্ছে দেখ! 😂🤣"
+            </div>
+
+            <!-- বাম এবং ডান কন্ট্রোল বাটন -->
+            <div class="flex items-center justify-center gap-6 pt-2">
+                <button 
+                    type="button"
+                    id="btn-prev-card"
+                    onclick="flipCard('left')"
+                    class="flex items-center gap-2 px-5 py-3 rounded-2xl bg-gray-800 hover:bg-gray-700 active:scale-95 border border-white/15 text-white font-semibold shadow-lg transition-all cursor-pointer"
+                >
+                    <i data-lucide="arrow-left" class="w-5 h-5 text-yellow-400"></i>
+                    <span>বাম (Prev)</span>
+                </button>
+
+                <button 
+                    type="button"
+                    id="btn-next-card"
+                    onclick="flipCard('right')"
+                    class="flex items-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-pink-600 hover:from-amber-400 hover:to-pink-500 active:scale-95 text-white font-semibold shadow-lg shadow-pink-500/25 transition-all cursor-pointer"
+                >
+                    <span>ডান (Next)</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ৪. স্পেশাল গিফট সেকশন (বেলুন ফাটা ও মিম রিভিল) -->
+        <section id="gift-section" class="bg-gradient-to-b from-gray-900/90 to-black/90 border border-yellow-500/30 rounded-3xl p-6 sm:p-10 text-center space-y-6 shadow-2xl">
+            <h2 class="stylish-headline text-2xl sm:text-4xl font-bold">
+                তোর জন্য স্পেশাল সারপ্রাইজ!
+            </h2>
+            <p class="text-gray-300 text-sm sm:text-base">
+                নিচের বাটনে ক্লিক করে তোর বার্থডে গিফটটা খুলে ফেল ভাই!
+            </p>
+
+            <!-- গিফট বাটন -->
+            <div class="pt-2">
+                <button 
+                    type="button"
+                    id="gift-trigger-btn"
+                    onclick="openBirthdayGift()"
+                    class="gift-btn-glow inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-pink-600 via-red-500 to-amber-500 hover:scale-105 active:scale-95 text-white text-xl sm:text-2xl font-bold transition-all cursor-pointer border-2 border-yellow-300/60"
+                >
+                    <span>🎁 এই না তোর গিফট 🎁</span>
+                </button>
+            </div>
+
+            <!-- গিফট খোলার পর যা দেখাবে (শুরুতে লুকানো থাকবে) -->
+            <div id="gift-reveal-box" class="hidden pt-6 space-y-5 fade-in-up">
+                <div class="p-4 sm:p-6 rounded-2xl bg-red-950/50 border-2 border-red-500/50 shadow-xl">
+                    <p class="text-2xl sm:text-3xl font-extrabold text-yellow-300 tracking-wide leading-snug">
+                        “Party pahle dena hai ladle, uske bad gift milega!” 😎🍗💸
                     </p>
                 </div>
+
+                <!-- পার্টি মিম ফটো (সম্পূর্ণ সাইজ, কোনো ক্রপ নেই) -->
+                <div class="uncropped-photo-container max-w-md mx-auto">
+                    <img 
+                        src="https://ibb.co/g1Kk5QD" 
+                        data-ibb="https://ibb.co/g1Kk5QD"
+                        alt="পার্টি আগে দে মিম" 
+                        class="uncropped-img"
+                    />
+                </div>
+
+                <p class="handwriting-title text-2xl sm:text-4xl font-bold text-emerald-400 pt-2">
+                    দেখ দেখ দেখ দেখ কেমন খুশি হচ্ছে দেখ! 😂🤣
+                </p>
             </div>
         </section>
 
         <!-- ৫. ওয়েবসাইট রেটিং ও মিম রিঅ্যাকশন সেকশন -->
-        <section class="space-y-6 text-center pb-12">
-            <div class="glow-card rounded-3xl p-6 sm:p-10 space-y-6">
-                <h2 class="handwriting-title text-3xl sm:text-4xl font-bold">
-                    তোর যদি এটা ভালো লাগে, তাহলে আমাদের ওয়েবসাইটটা রেট কর! ⭐
+        <section id="rating-section" class="bg-gray-900/80 backdrop-blur-md border border-cyan-500/30 rounded-3xl p-6 sm:p-10 text-center space-y-8 shadow-2xl">
+            <div class="space-y-2">
+                <h2 class="stylish-headline text-2xl sm:text-4xl font-bold">
+                    ⭐ ওয়েবসাইটটা কেমন লাগলো রেট কর! ⭐
                 </h2>
+                <p class="text-gray-300 text-base sm:text-lg">
+                    তোর যদি এটা ভালো লাগে তাহলে আমাদের ওয়েবসাইটকে রেট কর (একদম সত্যি বলবি কিন্তু!):
+                </p>
+            </div>
 
-                <!-- তিনটি অপশন বাটন -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto pt-2">
-                    <button type="button" onclick="handleRating('bad')" class="p-4 rounded-2xl bg-red-600/25 hover:bg-red-600/45 border border-red-500/50 text-red-200 font-bold text-lg transition transform hover:scale-105 active:scale-95 cursor-pointer">
-                        😒 খুব খারাপ
-                    </button>
-                    
-                    <button type="button" onclick="handleRating('good')" class="p-4 rounded-2xl bg-blue-600/25 hover:bg-blue-600/45 border border-blue-500/50 text-blue-200 font-bold text-lg transition transform hover:scale-105 active:scale-95 cursor-pointer">
-                        🙂 ভালো
-                    </button>
-                    
-                    <button type="button" onclick="handleRating('excellent')" class="p-4 rounded-2xl bg-emerald-600/25 hover:bg-emerald-600/45 border border-emerald-500/50 text-emerald-200 font-bold text-lg transition transform hover:scale-105 active:scale-95 cursor-pointer">
-                        🤩 এক্সিলেন্ট
-                    </button>
-                </div>
+            <!-- তিনটি রেটিং বাটন -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                <!-- অপশন ১: খুব খারাপ -->
+                <button 
+                    type="button"
+                    onclick="handleRating('bad')"
+                    id="rate-btn-bad"
+                    class="p-4 rounded-2xl bg-red-950/60 hover:bg-red-900/80 active:scale-95 border-2 border-red-500/40 text-red-200 font-bold text-lg transition-all cursor-pointer flex flex-col items-center gap-1 shadow-lg"
+                >
+                    <span class="text-3xl">😒</span>
+                    <span>খুব খারাপ</span>
+                </button>
 
-                <!-- রেটিং রেসপন্স ডিসপ্লে এরিয়া -->
-                <div id="rating-response-area" class="hidden pt-6 border-t border-white/10 space-y-5 fade-in-up">
-                    
-                    <!-- অপশন ১: খুব খারাপ রেসপন্স -->
-                    <div id="response-bad" class="hidden space-y-4">
-                        <p class="handwriting-body text-xl sm:text-2xl text-red-300 font-bold">
-                            "আমি জানি এটা তোর মনের কথা নয়, সত্যি করে রেট কর—এটাতে হবে না! 🤨"
-                        </p>
-                        <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-red-500/50 shadow-2xl smart-photo-box flex-col">
-                            <img 
-                                src="https://i.ibb.co/G31VQ3RD/image.jpg" 
-                                data-ibb="https://ibb.co/G31VQ3RD"
-                                alt="Jhoot Bol Raha Hai Meme" 
-                            >
-                            <div class="w-full bg-black/95 py-2.5 px-4 text-yellow-400 font-bold text-lg">
-                                "ঝুট বল রাহা হ্যায়! 🤥"
-                            </div>
-                        </div>
-                    </div>
+                <!-- অপশন ২: ভালো -->
+                <button 
+                    type="button"
+                    onclick="handleRating('good')"
+                    id="rate-btn-good"
+                    class="p-4 rounded-2xl bg-amber-950/60 hover:bg-amber-900/80 active:scale-95 border-2 border-amber-500/40 text-amber-200 font-bold text-lg transition-all cursor-pointer flex flex-col items-center gap-1 shadow-lg"
+                >
+                    <span class="text-3xl">🙂</span>
+                    <span>ভালো</span>
+                </button>
 
-                    <!-- অপশন ২: ভালো রেসপন্স -->
-                    <div id="response-good" class="hidden space-y-4">
-                        <div class="p-5 rounded-2xl bg-blue-500/20 border border-blue-400/40 max-w-lg mx-auto">
-                            <p class="handwriting-body text-xl sm:text-2xl text-cyan-200 font-bold leading-relaxed">
-                                "২০২৬-এও 2G নেটওয়ার্ক ব্যবহার করিস নাকি? একবারে বুঝতে পারছিস না! ঠিক করে অপশন দেখ ভাই! 📶🐢"
-                            </p>
-                        </div>
-                    </div>
+                <!-- অপশন ৩: এক্সিলেন্ট -->
+                <button 
+                    type="button"
+                    onclick="handleRating('excellent')"
+                    id="rate-btn-excellent"
+                    class="p-4 rounded-2xl bg-emerald-950/60 hover:bg-emerald-900/80 active:scale-95 border-2 border-emerald-500/40 text-emerald-200 font-bold text-lg transition-all cursor-pointer flex flex-col items-center gap-1 shadow-lg"
+                >
+                    <span class="text-3xl">🤩🔥</span>
+                    <span>এক্সিলেন্ট</span>
+                </button>
+            </div>
 
-                    <!-- অপশন ৩: এক্সিলেন্ট রেসপন্স -->
-                    <div id="response-excellent" class="hidden space-y-4">
-                        <p class="handwriting-body text-2xl sm:text-3xl text-emerald-300 font-bold">
-                            "এই তো লাইনে এসেছিস! তবে একটু বেশিই হয়ে গেল... 😂🎬"
-                        </p>
-                        <div class="max-w-sm mx-auto rounded-2xl overflow-hidden border-2 border-emerald-400/50 shadow-2xl smart-photo-box flex-col">
-                            <img 
-                                src="https://i.ibb.co/htTNDQn/image.jpg" 
-                                data-ibb="https://ibb.co/htTNDQn"
-                                a
+            <!-- রেটিং রেসপন্স ডিসপ্লে এরিয়া -->
+            <div id="rating-response-area" class="hidden pt-4 space-y-5 fade-in-up">
+                <!-- ডাইনামিক টেক্সট মেসেজ -->
+                <div id="rating-message-box" class="p-5 rounded-2xl border-2 text-xl sm:text-2xl font-bold leading-relaxed shadow-xl"></div>
+
+                <!-- ডাইনামিক মিম ফটো কন্টেইনার (সম্পূর্ণ সাইজ, ক্রপ ছাড়া) -->
+                <div id="rating-meme-container" class="hidden uncropped-photo-container max-w-md mx-auto">
+                    <img 
+                        id="rating-meme-img" 
+                        src="" 
+ 
