@@ -1,929 +1,997 @@
-<!DOCTYPE html>  <html lang="bn">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<meta name="theme-color" content="#05000d">  
-<title>Happy Birthday Priyadip Da ❤️</title>  <!-- Google Fonts -->  <link rel="preconnect" href="https://fonts.googleapis.com">  
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Pacifico&family=Tiro+Bangla&display=swap" rel="stylesheet">  <style>  
-/* =========================  
-   GLOBAL SETTINGS  
-========================= */  
-  
-* {  
-  margin: 0;  
-  padding: 0;  
-  box-sizing: border-box;  
-}  
-  
-html {  
-  scroll-behavior: smooth;  
-}  
-  
-body {  
-  background: #05000d;  
-  color: white;  
-  font-family: 'Hind Siliguri', sans-serif;  
-  overflow-x: hidden;  
-}  
-  
-:root {  
-  --pink: #ff4da6;  
-  --purple: #a855f7;  
-  --gold: #ffd166;  
-  --cyan: #4deeea;  
-}  
-  
-button {  
-  font-family: inherit;  
-  cursor: pointer;  
-}  
-  
-section {  
-  position: relative;  
-  z-index: 2;  
-  padding: 85px 18px;  
-  text-align: center;  
-}  
-  
-.section-title {  
-  font-size: clamp(28px, 6vw, 43px);  
-  margin-bottom: 20px;  
-  background: linear-gradient(90deg, #ff4da6, #ffd166, #4deeea);  
-  -webkit-background-clip: text;  
-  color: transparent;  
-}  
-  
-.section-subtitle {  
-  color: #d9c7e9;  
-  font-size: 16px;  
-  margin-bottom: 35px;  
-}  
-  
-/* =========================  
-   ANIMATED BACKGROUND  
-========================= */  
-  
-#stars {  
-  position: fixed;  
-  inset: 0;  
-  overflow: hidden;  
-  pointer-events: none;  
-  z-index: 0;  
-}  
-  
-.firefly {  
-  position: absolute;  
-  width: 4px;  
-  height: 4px;  
-  border-radius: 50%;  
-  background: #ffeaa7;  
-  box-shadow: 0 0 8px 3px #ffdb70;  
-  animation: fireflyMove linear infinite;  
-  opacity: 0;  
-}  
-  
-@keyframes fireflyMove {  
-  0% {  
-    transform: translate(0, 100vh) scale(.4);  
-    opacity: 0;  
-  }  
-  20% { opacity: 1; }  
-  50% {  
-    transform: translate(35px, 50vh) scale(1.2);  
-  }  
-  80% { opacity: .9; }  
-  100% {  
-    transform: translate(-25px, -10vh) scale(.5);  
-    opacity: 0;  
-  }  
-}  
-  
-.ambient-glow {  
-  position: fixed;  
-  width: 300px;  
-  height: 300px;  
-  border-radius: 50%;  
-  filter: blur(120px);  
-  opacity: .15;  
-  pointer-events: none;  
-  z-index: 0;  
-}  
-  
-.glow-one {  
-  background: #ff00a6;  
-  top: 10%;  
-  left: -150px;  
-}  
-  
-.glow-two {  
-  background: #6500ff;  
-  bottom: 10%;  
-  right: -150px;  
-}  
-  
-/* =========================  
-   HERO SECTION  
-========================= */  
-  
-.hero {  
-  min-height: 100svh;  
-  display: flex;  
-  flex-direction: column;  
-  justify-content: center;  
-  align-items: center;  
-  padding: 45px 18px;  
-}  
-  
-.small-tag {  
-  color: var(--gold);  
-  letter-spacing: 3px;  
-  font-size: 13px;  
-  margin-bottom: 25px;  
-}  
-  
-.hero h1 {  
-  font-family: 'Pacifico', cursive;  
-  font-size: clamp(40px, 10vw, 76px);  
-  line-height: 1.35;  
-  text-align: center;  
-  background: linear-gradient(  
-    90deg,  
-    #ff4da6,  
-    #ffd166,  
-    #4deeea,  
-    #c084fc  
-  );  
-  background-size: 300% 300%;  
-  -webkit-background-clip: text;  
-  color: transparent;  
-  animation: rainbow 5s ease infinite;  
-  filter: drop-shadow(0 0 15px #ff4da655);  
-}  
-  
-@keyframes rainbow {  
-  0%, 100% { background-position: 0% 50%; }  
-  50% { background-position: 100% 50%; }  
-}  
-  
-.hero .name {  
-  font-family: 'Tiro Bangla', serif;  
-  font-size: clamp(35px, 8vw, 65px);  
-  color: #fff;  
-  text-shadow:  
-    0 0 10px #ff4da6,  
-    0 0 25px #a855f7,  
-    0 0 45px #ff4da6;  
-  margin-top: 15px;  
-}  
-  
-.hero-description {  
-  color: #e6d9ef;  
-  max-width: 500px;  
-  margin: 25px auto;  
-  font-size: 18px;  
-  line-height: 1.9;  
-}  
-  
-.scroll-indicator {  
-  margin-top: 50px;  
-  color: #ffd166;  
-  animation: bounce 1.5s infinite;  
-}  
-  
-@keyframes bounce {  
-  0%, 100% { transform: translateY(0); }  
-  50% { transform: translateY(12px); }  
-}  
-  
-/* =========================  
-   GENERAL CARDS  
-========================= */  
-  
-.glass-card {  
-  max-width: 650px;  
-  margin: auto;  
-  padding: 28px 22px;  
-  border: 1px solid #ffffff20;  
-  border-radius: 25px;  
-  background: linear-gradient(  
-    135deg,  
-    #ffffff12,  
-    #ffffff04  
-  );  
-  backdrop-filter: blur(12px);  
-  box-shadow: 0 10px 45px #0008;  
-}  
-  
-.message {  
-  color: #f3e7ff;  
-  font-size: 18px;  
-  line-height: 2.05;  
-}  
-  
-.highlight {  
-  color: #ffd166;  
-  font-weight: 700;  
-}  
-  
-.emoji-line {  
-  font-size: 30px;  
-  margin: 20px 0;  
-}  
-  
-/* =========================  
-   FIRST PHOTO  
-========================= */  
-  
-.main-photo {  
-  width: 100%;  
-  max-width: 430px;  
-  margin: 35px auto;  
-  padding: 10px;  
-  border-radius: 25px;  
-  background: linear-gradient(  
-    135deg,  
-    #ff4da6,  
-    #ffd166,  
-    #4deeea  
-  );  
-  box-shadow: 0 0 35px #ff4da644;  
-}  
-  
-.main-photo img {  
-  display: block;  
-  width: 100%;  
-  height: auto;  
-  max-height: 650px;  
-  object-fit: contain;  
-  background: #10091a;  
-  border-radius: 17px;  
-}  
-  
-/* =========================  
-   MEMORIES GALLERY  
-========================= */  
-  
-.memory-container {  
-  max-width: 550px;  
-  margin: 35px auto 0;  
-  position: relative;  
-  touch-action: pan-y;  
-}  
-  
-.memory-frame {  
-  position: relative;  
-  width: 100%;  
-  min-height: 300px;  
-  border: 2px solid #ff4da6;  
-  border-radius: 25px;  
-  overflow: hidden;  
-  background: #120b20;  
-  box-shadow: 0 0 35px #a855f755;  
-}  
-  
-.memory-frame img {  
-  position: absolute;  
-  inset: 0;  
-  width: 100%;  
-  height: 100%;  
-  min-height: 300px;  
-  max-height: 500px;  
-  object-fit: contain;  
-  background: #10091a;  
-  opacity: 0;  
-  transition: opacity .45s ease;  
-  pointer-events: none;  
-}  
-  
-.memory-frame img.active {  
-  opacity: 1;  
-  pointer-events: auto;  
-}  
-  
-.memory-controls {  
-  display: flex;  
-  justify-content: center;  
-  align-items: center;  
-  gap: 25px;  
-  margin-top: 22px;  
-}  
-  
-.nav-btn {  
-  width: 52px;  
-  height: 52px;  
-  border-radius: 50%;  
-  border: 1px solid #ff4da6;  
-  background: #ff4da620;  
-  color: white;  
-  font-size: 25px;  
-  transition: .3s;  
-}  
-  
-.nav-btn:hover {  
-  background: #ff4da6;  
-  transform: scale(1.1);  
-}  
-  
-.memory-count {  
-  color: #ffd166;  
-  font-size: 16px;  
-}  
-  
-.memory-caption {  
-  color: #e6d9ef;  
-  margin-top: 20px;  
-}  
-  
-/* =========================  
-   GIFT SECTION  
-========================= */  
-  
-.gift-section {  
-  padding-top: 100px;  
-  padding-bottom: 100px;  
-}  
-  
-.gift-box {  
-  font-size: 90px;  
-  animation: giftShake 2s infinite;  
-  display: inline-block;  
-  filter: drop-shadow(0 0 20px #ff4da6);  
-}  
-  
-@keyframes giftShake {  
-  0%, 100% { transform: rotate(0deg); }  
-  10% { transform: rotate(-10deg); }  
-  20% { transform: rotate(10deg); }  
-  30% { transform: rotate(-8deg); }  
-  40% { transform: rotate(8deg); }  
-  50% { transform: rotate(0); }  
-}  
-  
-.primary-btn {  
-  border: none;  
-  border-radius: 50px;  
-  padding: 15px 32px;  
-  margin-top: 25px;  
-  color: #16051e;  
-  background: linear-gradient(90deg, #ffd166, #ff4da6);  
-  font-size: 18px;  
-  font-weight: 700;  
-  box-shadow: 0 0 25px #ff4da655;  
-  transition: .3s;  
-}  
-  
-.primary-btn:hover {  
-  transform: translateY(-5px) scale(1.04);  
-  box-shadow: 0 0 35px #ff4da6;  
-}  
-  
-#giftReveal {  
-  display: none;  
-  margin: 35px auto 0;  
-  max-width: 600px;  
-  animation: reveal .8s ease both;  
-}  
-  
-@keyframes reveal {  
-  from {  
-    opacity: 0;  
-    transform: scale(.7) translateY(30px);  
-  }  
-  to {  
-    opacity: 1;  
-    transform: scale(1) translateY(0);  
-  }  
-}  
-  
-.gift-message {  
-  font-size: clamp(22px, 5vw, 35px);  
-  color: #ffd166;  
-  line-height: 1.7;  
-  font-weight: 700;  
-  text-shadow: 0 0 15px #ff4da6;  
-}  
-  
-.balloon {  
-  position: fixed;  
-  bottom: -130px;  
-  z-index: 100;  
-  font-size: 45px;  
-  pointer-events: none;  
-  animation: balloonUp 4s ease-in forwards;  
-}  
-  
-@keyframes balloonUp {  
-  0% {  
-    transform: translateY(0) rotate(0);  
-    opacity: 1;  
-  }  
-  100% {  
-    transform: translateY(-120vh) rotate(35deg);  
-    opacity: 0;  
-  }  
-}  
-  
-/* =========================  
-   MEME IMAGE  
-========================= */  
-  
-.meme {  
-  display: none;  
-  width: 100%;  
-  max-width: 520px;  
-  height: auto;  
-  object-fit: contain;  
-  margin: 25px auto;  
-  border-radius: 15px;  
-  border: 2px solid #ffd166;  
-  box-shadow: 0 0 25px #ffd16655;  
-}  
-  
-#giftReveal .meme {  
-  display: block;  
-}  
-  
-/* =========================  
-   RATING SECTION  
-========================= */  
-  
-.rating-options {  
-  display: flex;  
-  flex-wrap: wrap;  
-  justify-content: center;  
-  gap: 12px;  
-  margin: 30px auto;  
-}  
-  
-.rating-btn {  
-  padding: 13px 23px;  
-  border-radius: 50px;  
-  font-size: 17px;  
-  border: 1px solid #ffffff35;  
-  background: #ffffff10;  
-  color: white;  
-  transition: .3s;  
-}  
-  
-.rating-btn:hover {  
-  transform: translateY(-4px);  
-  background: #a855f7;  
-  border-color: #c084fc;  
-}  
-  
-.rating-btn:active {  
-  transform: scale(.95);  
-}  
-  
-#ratingResponse {  
-  display: none;  
-  max-width: 600px;  
-  margin: 30px auto;  
-  padding: 25px 20px;  
-  border-radius: 20px;  
-  background: #ffffff0c;  
-  border: 1px solid #ffffff30;  
-  animation: reveal .6s ease;  
-}  
-  
-#ratingText {  
-  color: #ffd166;  
-  font-size: 21px;  
-  line-height: 1.8;  
-  font-weight: 700;  
-}  
-  
-#ratingMeme {  
-  display: none;  
-  width: 100%;  
-  max-width: 520px;  
-  height: auto;  
-  object-fit: contain;  
-  margin: 22px auto 0;  
-  border-radius: 15px;  
-}  
-  
-#finalSurprise {  
-  display: none;  
-  max-width: 600px;  
-  margin: 35px auto;  
-  animation: reveal 1s ease;  
-}  
-  
-#finalSurprise img {  
-  display: block;  
-  width: 100%;  
-  height: auto;  
-  object-fit: contain;  
-  border-radius: 18px;  
-  border: 2px solid #ffd166;  
-  box-shadow: 0 0 35px #ffd16655;  
-}  
-  
-.final-caption {  
-  font-size: 24px;  
-  color: #ffd166;  
-  margin-top: 20px;  
-}  
-  
-/* =========================  
-   CONFETTI  
-========================= */  
-  
-.confetti {  
-  position: fixed;  
-  top: -20px;  
-  z-index: 999;  
-  pointer-events: none;  
-  animation: confettiFall linear forwards;  
-}  
-  
-@keyframes confettiFall {  
-  0% {  
-    transform: translateY(-20px) rotate(0deg);  
-    opacity: 1;  
-  }  
-  100% {  
-    transform: translateY(110vh) rotate(720deg);  
-    opacity: 0;  
-  }  
-}  
-  
-/* =========================  
-   FOOTER  
-========================= */  
-  
-footer {  
-  padding: 40px 15px;  
-  text-align: center;  
-  color: #c5b3d8;  
-  border-top: 1px solid #ffffff15;  
-  font-size: 14px;  
-  line-height: 2;  
-}  
-  
-footer span {  
-  color: #ff4da6;  
-}  
-  
-/* =========================  
-   SCROLL ANIMATION  
-========================= */  
-  
-.reveal-section {  
-  opacity: 0;  
-  transform: translateY(45px);  
-  transition: opacity .8s ease, transform .8s ease;  
-}  
-  
-.reveal-section.visible {  
-  opacity: 1;  
-  transform: translateY(0);  
-}  
-  
-/* =========================  
-   RESPONSIVE DESIGN  
-========================= */  
-  
-@media(max-width: 600px) {  
-  section {  
-    padding: 65px 15px;  
-  }  
-  
-  .hero {  
-    padding: 30px 15px;  
-  }  
-  
-  .glass-card {  
-    padding: 24px 17px;  
-  }  
-  
-  .message {  
-    font-size: 16px;  
-  }  
-  
-  .memory-frame,  
-  .memory-frame img {  
-    min-height: 260px;  
-  }  
-  
-  .rating-options {  
-    gap: 9px;  
-  }  
-  
-  .rating-btn {  
-    padding: 12px 16px;  
-    font-size: 15px;  
-  }  
-}  
-  
-@media(prefers-reduced-motion: reduce) {  
-  *, *::before, *::after {  
-    animation-duration: .01ms !important;  
-    animation-iteration-count: 1 !important;  
-    scroll-behavior: auto !important;  
-    transition-duration: .01ms !important;  
-  }  
-}  
-</style>  </head>  <body>  <!-- BACKGROUND EFFECTS -->  <div id="stars"></div>  
-<div class="ambient-glow glow-one"></div>  
-<div class="ambient-glow glow-two"></div>  <!-- =========================  
-     HERO  
-========================= -->  <section class="hero">    <div class="small-tag">  
-    ✨ A SPECIAL DAY • A SPECIAL PERSON ✨  
-  </div>    <h1>Happy Birthday</h1>    <div class="name">  
-    প্রিয়দীপ দা ❤️  
-  </div>    <p class="hero-description">  
-    আজকের দিনটা একটু আলাদা।  
-    কারণ আজ আমাদের সুইট গার্লের নয়,  
-    আমাদের প্রিয় প্রিয়দীপ দার জন্মদিন! 🎂  
-    <br>  
-    তৈরি থাক, আজ কিন্তু শুধু শুভেচ্ছা নয়,  
-    সঙ্গে কিছু স্পেশাল অপমানও আছে! 😂  
-  </p>    <div class="emoji-line">🎈 🎂 🎉 🥳 🎁</div>    <div class="scroll-indicator">  
-    নিচে স্ক্রল করো, আরও চমক বাকি আছে!  
-    <br>↓  
-  </div>  </section>  <!-- =========================  
-     BIRTHDAY MESSAGE  
-========================= -->  <section class="reveal-section">    <h2 class="section-title">  
-    ২০ বছরের জার্নি! 🥳  
-  </h2>    <div class="glass-card">  <div class="message">  
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05000d">
 
-  প্রথমেই জানাই তোকে জন্মদিনের  
-  অনেক অনেক ভালোবাসা ও শুভেচ্ছা! ❤️  
+<title>Happy Birthday Priyadip Da ❤️</title>
 
-  <br><br>  
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Pacifico&family=Baloo+Da+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  অবশেষে তোর জীবনের  
-  <span class="highlight">২০তম জন্মদিন</span>  
-  চলে এলো!  
-  কুড়ি বছরে পা দিলি ভাই,  
-  সময় কিন্তু সত্যিই খুব তাড়াতাড়ি চলে যায়!  
+<style>
+/* ===============================
+   GLOBAL SETTINGS
+================================ */
 
-  <br><br>  
+:root {
+    --gold: #ffd76a;
+    --pink: #ff4fa3;
+    --purple: #a855f7;
+    --cyan: #51e8ff;
+    --dark: #05000d;
+    --white: #fff;
+}
 
-  তবে ভারতীয় সংবিধান অনুযায়ী  
-  ২১ বছর হওয়ার আগে বিয়ের চিন্তা  
-  একদম মাথায় আনবি না! 😂  
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  <br><br>  
+html {
+    scroll-behavior: smooth;
+}
 
-  আর হ্যাঁ, ২১ বছর হয়ে গেলে বিয়েটা  
-  ভালো করে করিস।  
-  কিন্তু একটা কথা মনে রাখিস,  
-  <span class="highlight">  
-    বিয়ের ভোজটা যেন দুর্দান্ত হয়!  
-  </span>  
-  আমাদের কিন্তু খাওয়া-দাওয়ার ব্যাপারে  
-  কোনো আপস নেই! 🤣  
+body {
+    background: var(--dark);
+    color: white;
+    font-family: 'Hind Siliguri', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
 
-  <br><br>  
+button {
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
 
-  আর চিন্তা নিস না ভাই,  
-  যতদূর মনে হচ্ছে  
-  <span class="highlight">২০৯৯ সালেও বিজেপি থাকবে!</span>  
-  তাই ভবিষ্যৎ নিয়ে বেশি চিন্তা করার দরকার নেই! 😂  
+section {
+    position: relative;
+    padding: 85px 18px;
+    text-align: center;
+    z-index: 2;
+}
 
-  <br><br>  
+.section-title {
+    font-size: clamp(30px, 7vw, 49px);
+    color: var(--gold);
+    text-shadow:
+        0 0 10px #ffb52f,
+        0 0 25px #ff6b00,
+        0 0 45px #ff299f;
+    margin-bottom: 25px;
+}
 
-  সবসময় ভালো থাকিস,  
-  হাসিখুশি থাকিস,  
-  জীবনে অনেক বড় হোস।  
+/* ===============================
+   BACKGROUND STARS
+================================ */
 
-  <br><br>  
+#stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
 
-  আর আমাদের ভুলে যাস না কিন্তু! ❤️  
+.firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #fff7a8;
+    box-shadow:
+        0 0 8px #fff,
+        0 0 17px #ffe45c,
+        0 0 28px #ffb52f;
+    animation: fireflyMove linear infinite;
+    opacity: 0;
+}
 
-</div>  
+@keyframes fireflyMove {
+    0% {
+        transform: translateY(0) translateX(0) scale(.5);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    50% {
+        transform: translateY(-100px) translateX(40px) scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-220px) translateX(-35px) scale(.4);
+        opacity: 0;
+    }
+}
 
-<div class="emoji-line">💐 ❤️ 🥂</div>
+/* ===============================
+   HERO SECTION
+================================ */
 
-  </div>  </section>  <!-- =========================  
-     MAIN PHOTO  
-========================= -->  <section class="reveal-section">    <h2 class="section-title">  
-    Birthday Boy! 📸  
-  </h2>    <p class="section-subtitle">  
-    এই বিশেষ দিনের বিশেষ মুহূর্ত ❤️  
-  </p>    <div class="main-photo">  <img  
-  src="https://i.ibb.co/XxYrWw7H/IMG-20261118-135953.jpg"  
-  alt="Birthday celebration photo"  
-  loading="lazy"  
->
+.hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 65px 18px;
+    overflow: hidden;
+}
 
-  </div>    <p class="message">  
-    এই হাসিটা যেন সবসময় এমনই থাকে! 😊  
-  </p>  </section>  <!-- =========================  
-     MEMORIES  
-========================= -->  <section class="reveal-section" id="memories">    <h2 class="section-title">  
-    Our Memories ❤️  
-  </h2>    <p class="section-subtitle">  
-    কিছু মুহূর্ত ফ্রেমে বন্দি থাকলেও  
-    স্মৃতিতে চিরকাল থেকে যায়!  
-  </p>    <div class="memory-container" id="memoryContainer">  <div class="memory-frame">  
+.top-label {
+    color: #ffb8e0;
+    font-size: 15px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
 
-  <img  
-    class="active"  
-    src="https://i.ibb.co/224GDRj/IMG-20261118-141542.jpg"  
-    alt="Memory photo one"  
-    loading="lazy"  
-  >  
+.hero h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(38px, 9vw, 76px);
+    line-height: 1.4;
+    background: linear-gradient(
+        90deg,
+        #ff7eb3,
+        #ffdc73,
+        #76edff,
+        #d69aff,
+        #ff7eb3
+    );
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 6s linear infinite;
+    filter: drop-shadow(0 0 15px #ff4fa366);
+}
 
-  <img  
-    src="https://i.ibb.co/4ZZr5gZh/Screenshot-2026-11-18-14-01-26-20-1c337646f29875672b5a61192b9010f9.jpg"  
-    alt="Memory photo two"  
-    loading="lazy"  
-  >  
+@keyframes gradientMove {
+    to { background-position: 300%; }
+}
 
-</div>  
+.hero-subtitle {
+    font-size: clamp(19px, 4vw, 25px);
+    margin-top: 18px;
+    color: #ffe5f4;
+}
 
-<div class="memory-controls">  
+.hero-emoji {
+    font-size: 65px;
+    margin: 20px 0;
+    animation: heartbeat 1.5s infinite;
+}
 
-  <button class="nav-btn" id="prevMemory"  
-    aria-label="Previous photo">  
-    ❮  
-  </button>  
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+}
 
-  <span class="memory-count" id="memoryCount">  
-    1 / 2  
-  </span>  
+.scroll-indicator {
+    margin-top: 40px;
+    color: #ffd76a;
+    animation: bounce 1.6s infinite;
+}
 
-  <button class="nav-btn" id="nextMemory"  
-    aria-label="Next photo">  
-    ❯  
-  </button>  
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(12px); }
+}
 
-</div>
+/* ===============================
+   BIRTHDAY MESSAGE
+================================ */
 
-  </div>    <p class="memory-caption" id="memoryCaption">  
-    Memory 1 ❤️  
-  </p>    <p class="section-subtitle" style="margin-top:15px;">  
-    ছবির উপর আঙুল রেখে ডান বা বাঁ দিকে সোয়াইপ করো!  
-  </p>  </section>  <!-- =========================  
-     GIFT SURPRISE  
-========================= -->  <section class="gift-section reveal-section">    <h2 class="section-title">  
-    আর এবার তোর গিফট! 🎁  
-  </h2>    <div class="gift-box">🎁</div>    <p class="section-subtitle">  
-    অনেক অপেক্ষা করেছিস,  
-    এবার গিফটটা খুলে দেখ!  
-  </p>    <button class="primary-btn" id="giftButton">  
-    🎁 এই না তোর গিফট!  
-  </button>    <div id="giftReveal">  <div class="gift-message">  
-  Party pahle dena hai ladle,  
-  uske bad gift milega! 🤣  
-</div>  
+.message-section {
+    max-width: 850px;
+    margin: auto;
+}
 
-<img  
-  class="meme"  
-  src="https://i.ibb.co/LhqCdh1y/Screenshot-2026-11-18-14-19-05-43-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"  
-  alt="Jhooth bol raha hai meme"  
-  loading="lazy"  
->  
+.message-card {
+    padding: 30px 23px;
+    border: 1px solid #ffbd6d66;
+    border-radius: 25px;
+    background: linear-gradient(
+        135deg,
+        #1c0b29dd,
+        #10081bdd,
+        #211027dd
+    );
+    box-shadow:
+        0 0 25px #ff4fa322,
+        inset 0 0 25px #a855f711;
+}
 
-<p class="message">  
-  আগে পার্টি, তারপর গিফট!  
-  <br>  
-  নিয়ম সবার জন্য সমান! 😂  
-</p>
+.message-card p {
+    font-size: clamp(17px, 4vw, 21px);
+    line-height: 2;
+    color: #fff0fa;
+    margin-bottom: 18px;
+}
 
-  </div>  </section>  <!-- =========================  
-     RATING  
-========================= -->  <section class="reveal-section" id="ratingSection">    <h2 class="section-title">  
-    এবার আমাদের Website-কে Rate কর! ⭐  
-  </h2>    <p class="section-subtitle">  
-    সত্যি করে বলিস, কেমন লাগল তোর?  
-  </p>    <div class="rating-options">  <button class="rating-btn" id="badRating">  
-  😡 খুব খারাপ  
-</button>  
+.highlight {
+    color: var(--gold);
+    font-weight: 700;
+    text-shadow: 0 0 12px #ffad42;
+}
 
-<button class="rating-btn" id="goodRating">  
-  🙂 ভালো  
-</button>  
+.love-text {
+    color: #ff83c4;
+    font-size: 25px;
+    font-weight: 700;
+}
 
-<button class="rating-btn" id="excellentRating">  
-  🤩 এক্সিলেন্ট  
-</button>
+/* ===============================
+   MAIN BIRTHDAY PHOTO
+================================ */
 
-  </div>    <div id="ratingResponse">  <p id="ratingText"></p>  
+.photo-frame {
+    max-width: 390px;
+    width: 100%;
+    margin: 35px auto;
+    padding: 9px;
+    border-radius: 25px;
+    background: linear-gradient(
+        135deg,
+        #ffb347,
+        #ff4fa3,
+        #a855f7,
+        #51e8ff
+    );
+    box-shadow: 0 0 35px #ff4fa344;
+}
 
-<img  
-  id="ratingMeme"  
-  src="https://i.ibb.co/760D2MT/Screenshot-2026-11-18-14-19-38-25-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"  
-  alt="Funny rating reaction"  
-  loading="lazy"  
->
+.photo-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    object-fit: contain;
+    background: #12091c;
+    border-radius: 18px;
+}
 
-  </div>    <!-- FINAL SURPRISE -->    <div id="finalSurprise">  <h2 class="section-title">  
-  এইবার বুঝলি তো! 😂  
-</h2>  
+/* ===============================
+   MEMORIES SECTION
+================================ */
 
-<img  
-  src="https://i.ibb.co/760D2MT/Screenshot-2026-11-18-14-19-38-25-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"  
-  alt="Final birthday surprise"  
-  loading="lazy"  
->  
+.memories-section {
+    overflow: hidden;
+}
 
-<p class="final-caption">  
-  🤣 ১৫০ টাকার কার্ড আর ৫০ টাকার কার্ড!  
-  <br>  
-  Overacting-এর চক্করে সব শেষ!  
-</p>  
+.memory-container {
+    position: relative;
+    max-width: 590px;
+    margin: 35px auto 20px;
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid #ffcf7655;
+    background: #160c23;
+    box-shadow: 0 0 30px #9d4edd22;
+    touch-action: pan-y;
+}
 
-<p class="message" style="margin-top:20px;">  
-  যাই হোক ভাই, জন্মদিনটা খুব ভালো কাটুক!  
-  <br>  
-  অনেক ভালোবাসা রইল! ❤️  
-</p>  
+.memory-stage {
+    position: relative;
+    width: 100%;
+    height: clamp(240px, 62vw, 370px);
+    perspective: 1000px;
+    cursor: pointer;
+}
 
-<div class="emoji-line">  
-  🎂 🎉 ❤️ 🥳 🎁  
-</div>
+.memory-card {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    transition:
+        transform .65s ease,
+        opacity .45s ease;
+    background: #241332;
+}
 
-  </div>  </section>  <!-- =========================  
-     FOOTER  
-========================= -->  <footer>  Made with ❤️ and lots of fun!
+.memory-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #08050d;
+    display: block;
+}
 
-  <br>  বিশেষভাবে তৈরি আমাদের প্রিয়দীপ দার জন্য।
+.memory-card.front {
+    z-index: 2;
+    transform: translateX(0) rotateY(0deg);
+}
 
-  <br>  <span>Happy Birthday Priyadip Da! 🎂</span>
+.memory-card.back {
+    z-index: 1;
+    transform: translateX(0) rotateY(180deg);
+    opacity: 0;
+}
 
-</footer>  <script>  
-  
-/* =========================  
-   FIRE FLY EFFECT  
-========================= */  
-  
-const stars = document.getElementById("stars");  
-  
-for (let i = 0; i < 65; i++) {  
-  
-  const firefly = document.createElement("div");  
-  
-  firefly.className = "firefly";  
-  
-  firefly.style.left = Math.random() * 100 + "%";  
-  
-  firefly.style.animationDuration =  
-    (5 + Math.random() * 9) + "s";  
-  
-  firefly.style.animationDelay =  
-    (Math.random() * 10) + "s";  
-  
-  const size = 2 + Math.random() * 4;  
-  
-  firefly.style.width = size + "px";  
-  firefly.style.height = size + "px";  
-  
-  stars.appendChild(firefly);  
-  
-}  
-  
-/* =========================  
-   SCROLL REVEAL  
-========================= */  
-  
-const revealObserver = new IntersectionObserver(  
-  (entries) => {  
-  
-    entries.forEach(entry => {  
-  
-      if (entry.isIntersecting) {  
-  
-        entry.target.classList.add("visible");  
-  
-      }  
-  
-    });  
-  
-  },  
-  {  
-    threshold: 0.12  
-  }  
-);  
-  
-document.querySelectorAll(".reveal-section").forEach(  
-  section => revealObserver.observe(section)  
-);  
-  
-/* =========================  
-   MEMORY SLIDER  
-========================= */  
-  
-const memoryImages = document.querySelectorAll(  
-  ".memory-frame img"  
-);  
-  
-const memoryCount = document.getElementById("memoryCount");  
-  
-const memoryCaption = document.getElementById("memoryCaption");  
-  
-let currentMemory = 0;  
-  
-function showMemory(index) {  
-  
-  currentMemory =  
-    (index + memoryImages.length) % memoryImages.length;  
-  
-  memoryImages.forEach((img, i) => {  
-  
-    img.classList.toggle("active", i === currentMem
+.memory-stage.flipped .front {
+    transform: translateX(0) rotateY(-180deg);
+    opacity: 0;
+}
+
+.memory-stage.flipped .back {
+    transform: translateX(0) rotateY(0deg);
+    opacity: 1;
+    z-index: 3;
+}
+
+.memory-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.nav-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid #ffcf76;
+    color: white;
+    background: linear-gradient(135deg, #a855f7, #ff4fa3);
+    font-size: 23px;
+    box-shadow: 0 0 15px #ff4fa344;
+    transition: .2s;
+}
+
+.nav-btn:active {
+    transform: scale(.9);
+}
+
+.memory-counter {
+    color: #ffd76a;
+    font-size: 16px;
+}
+
+.memory-hint {
+    color: #cdbbd9;
+    margin-top: 17px;
+    font-size: 14px;
+}
+
+/* ===============================
+   GIFT SECTION
+================================ */
+
+.gift-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.gift-box {
+    max-width: 550px;
+    margin: auto;
+    padding: 35px 20px;
+    border-radius: 28px;
+    border: 1px solid #ff4fa366;
+    background: linear-gradient(145deg, #200c2b, #100a1e);
+    box-shadow: 0 0 35px #ff4fa322;
+}
+
+.gift-icon {
+    font-size: 85px;
+    display: block;
+    margin: 15px 0;
+    animation: giftBounce 2s infinite;
+}
+
+@keyframes giftBounce {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-10px) rotate(-5deg); }
+    75% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.gift-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 17px 38px;
+    color: #2b0b21;
+    font-size: 21px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffcf70, #ff75b5);
+    box-shadow: 0 0 25px #ff79b477;
+    transition: .3s;
+    margin-top: 20px;
+}
+
+.gift-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 35px #ff79b4aa;
+}
+
+.gift-btn:disabled {
+    opacity: .7;
+    cursor: default;
+}
+
+.gift-result {
+    display: none;
+    margin-top: 30px;
+    animation: reveal .8s ease;
+}
+
+.gift-result.show {
+    display: block;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.party-text {
+    color: #ffd76a;
+    font-size: clamp(21px, 5vw, 29px);
+    font-weight: 800;
+    line-height: 1.7;
+    text-shadow: 0 0 15px #ff9d35;
+}
+
+.gift-meme {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 25px auto 10px;
+    border-radius: 15px;
+    background: #08050d;
+}
+
+.meme-caption {
+    font-size: 23px;
+    color: #ff91c9;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+/* ===============================
+   CONFETTI AND BALLOONS
+================================ */
+
+#celebration {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 99;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    width: 9px;
+    height: 14px;
+    animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(110vh) rotate(900deg);
+        opacity: 0;
+    }
+}
+
+.balloon {
+    position: absolute;
+    bottom: -100px;
+    font-size: 38px;
+    animation: balloonFly linear forwards;
+}
+
+@keyframes balloonFly {
+    to {
+        transform: translateY(-120vh) translateX(40px);
+        opacity: 0;
+    }
+}
+
+/* ===============================
+   RATING SECTION
+================================ */
+
+.rating-section {
+    max-width: 800px;
+    margin: auto;
+}
+
+.rating-card {
+    padding: 35px 20px;
+    border: 1px solid #a855f755;
+    border-radius: 27px;
+    background: linear-gradient(145deg, #1c0d2a, #10091d);
+    box-shadow: 0 0 35px #a855f722;
+}
+
+.rating-card p {
+    color: #e9d8ff;
+    font-size: 19px;
+    margin: 15px 0 25px;
+}
+
+.rating-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.rating-btn {
+    min-width: 115px;
+    border: 1px solid #ffffff33;
+    border-radius: 40px;
+    padding: 14px 20px;
+    font-size: 17px;
+    color: white;
+    background: linear-gradient(135deg, #58248a, #a83279);
+    transition: .25s;
+}
+
+.rating-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #ff4fa366;
+}
+
+.rating-response {
+    display: none;
+    margin-top: 30px;
+    animation: reveal .7s ease;
+}
+
+.rating-response.show {
+    display: block;
+}
+
+.response-text {
+    font-size: clamp(19px, 4vw, 24px);
+    color: #ffdc80;
+    line-height: 1.8;
+    font-weight: 700;
+}
+
+.response-meme {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 22px auto 0;
+    border-radius: 15px;
+    background: #08050d;
+}
+
+.rating-btn:disabled {
+    opacity: .5;
+    cursor: default;
+    transform: none;
+}
+
+.final-surprise {
+    display: none;
+    margin-top: 30px;
+}
+
+.final-surprise.show {
+    display: block;
+    animation: reveal .9s ease;
+}
+
+.final-surprise img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 18px;
+    background: #08050d;
+    box-shadow: 0 0 30px #ffd76a44;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+
+footer {
+    padding: 50px 15px;
+    text-align: center;
+    color: #c8b2d5;
+    border-top: 1px solid #ffffff15;
+    background: #080410;
+    line-height: 2;
+}
+
+footer strong {
+    color: #ff8fc8;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 480px) {
+
+    section {
+        padding: 70px 15px;
+    }
+
+    .hero {
+        min-height: 90svh;
+    }
+
+    .message-card {
+        padding: 24px 17px;
+    }
+
+    .rating-buttons {
+        gap: 9px;
+    }
+
+    .rating-btn {
+        min-width: 95px;
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+
+    .memory-container {
+        padding: 10px;
+    }
+
+    .gift-box {
+        padding: 28px 15px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div id="stars"></div>
+<div id="celebration"></div>
+
+<!-- ===============================
+     HERO
+================================ -->
+
+<section class="hero">
+
+    <div class="top-label">
+        ✨ A Special Day For Someone Special ✨
+    </div>
+
+    <h1>
+        Happy Birthday<br>
+        Priyadip Da ❤️
+    </h1>
+
+    <div class="hero-emoji">🎂🎉💖</div>
+
+    <p class="hero-subtitle">
+        আজকের দিনটা শুধু তোর জন্য! 🥳
+    </p>
+
+    <div class="scroll-indicator">
+        <p>নিচে আরও কিছু সারপ্রাইজ আছে</p>
+        <div style="font-size:30px;">↓</div>
+    </div>
+
+</section>
+
+<!-- ===============================
+     BIRTHDAY MESSAGE
+================================ -->
+
+<section class="message-section">
+
+    <h2 class="section-title">
+        অনেক অনেক শুভ জন্মদিন! 💝
+    </h2>
+
+    <div class="message-card">
+
+        <p>
+            এই তো ভাই, দেখতে দেখতে তোর জীবনের
+            <span class="highlight">কুড়ি তম জন্মদিন</span>
+            চলে এলো! ❤️
+        </p>
+
+        <p>
+            কুড়ি বছরে ঢুকে গেলি। ভারতীয় সংবিধান অনুসারে
+            তুই এখনো একটু ছোট! 😂
+        </p>
+
+        <p>
+            আর মাত্র এক বছর অপেক্ষা কর।
+            <span class="highlight">২১ বছর</span>
+            হতে দে, তার আগে বিয়ে করার চিন্তা করিস না!
+            🤣
+        </p>
+
+        <p>
+            তারপর বিয়েটা করে ভোজটা কিন্তু জমিয়ে দিস।
+            আমাদের দাওয়াত দিতে ভুলে গেলে কিন্তু খবর আছে!
+            🍗🎊
+        </p>
+
+        <p>
+            আর চিন্তা নিস না, যতদূর মনে হচ্ছে
+            <span class="highlight">২০৯৯ সালেও বিজেপি থাকবে!</span>
+            😂😂
+        </p>
+
+        <p>
+            সবসময় হাসিখুশি থাকিস, জীবনে অনেক বড় হ,
+            আর তোর সব স্বপ্ন পূরণ হোক।
+        </p>
+
+        <p class="love-text">
+            অনেক ভালোবাসা রইল, প্রিয়দীপ দা! ❤️
+        </p>
+
+    </div>
+
+    <!-- MAIN PHOTO -->
+
+    <div class="photo-frame">
+
+        <img
+            src="https://i.ibb.co/XxYrWw7H/IMG-20261118-135953.jpg"
+            alt="Birthday celebration photo with Priyadip Da"
+            loading="eager"
+        >
+
+    </div>
+
+    <p style="color:#ffd76a;font-size:19px;">
+        আজকের আসল Birthday Boy! 👑
+    </p>
+
+</section>
+
+<!-- ===============================
+     MEMORIES
+================================ -->
+
+<section class="memories-section">
+
+    <h2 class="section-title">
+        Our Beautiful Memories 📸
+    </h2>
+
+    <p style="color:#e5c9ff;font-size:18px;">
+        কিছু মুহূর্ত ছবিতে থেকে যায়, মনে চিরকাল ❤️
+    </p>
+
+    <div class="memory-container" id="memoryContainer">
+
+        <div class="memory-stage" id="memoryStage">
+
+            <div class="memory-card front">
+                <img
+                    src="https://i.ibb.co/224GDRj/IMG-20261118-141542.jpg"
+                    alt="Memory photo one"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="memory-card back">
+                <img
+                    src="https://i.ibb.co/4ZZr5gZh/Screenshot-2026-11-18-14-01-26-20-1c337646f29875672b5a61192b9010f9.jpg"
+                    alt="Memory photo two"
+                    loading="lazy"
+                >
+            </div>
+
+        </div>
+
+        <div class="memory-controls">
+
+            <button
+                class="nav-btn"
+                id="previousMemory"
+                aria-label="Previous memory"
+            >❮</button>
+
+            <span class="memory-counter" id="memoryCounter">
+                Memory 1 / 2
+            </span>
+
+            <button
+                class="nav-btn"
+                id="nextMemory"
+                aria-label="Next memory"
+            >❯</button>
+
+        </div>
+
+        <p class="memory-hint">
+            👆 ছবিতে ট্যাপ করেও Flip করতে পারিস।
+            অথবা ডান-বাম Swipe কর।
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===============================
+     GIFT SECTION
+================================ -->
+
+<section class="gift-section">
+
+    <h2 class="section-title">
+        And Now... Your Gift! 🎁
+    </h2>
+
+    <div class="gift-box">
+
+        <span class="gift-icon">🎁</span>
+
+        <p style="font-size:20px;color:#ffe3f4;">
+            এতক্ষণ তো অনেক কিছু দেখলি...
+        </p>
+
+        <p style="font-size:19px;color:#ffd76a;margin-top:10px;">
+            এবার তোর আসল গিফটটা খুলে দেখ!
+        </p>
+
+        <button
+            class="gift-btn"
+            id="giftButton"
+        >
+            এই না তোর গিফট 🎁
+        </button>
+
+        <div class="gift-result" id="giftResult">
+
+            <p class="party-text">
+                Party pahle dena hai ladle,<br>
+                uske bad gift milega! 😂🎉
+            </p>
+
+            <img
+                class="gift-meme"
+                src="https://i.ibb.co/760D2MT/Screenshot-2026-11-18-14-19-38-25-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"
+                alt="Birthday gift joke meme"
+                loading="lazy"
+            >
+
+            <p class="meme-caption">
+                দেখ! দেখ! দেখ! দেখ! 🤣<br>
+                কেমন খুশি হচ্ছে দেখ! 😂
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===============================
+     RATING SECTION
+================================ -->
+
+<section class="rating-section">
+
+    <h2 class="section-title">
+        এবার তোর Review চাই! ⭐
+    </h2>
+
+    <div class="rating-card">
+
+        <p>
+            যদি আমাদের এই ছোট্ট Website-টা ভালো লাগে,
+            তাহলে একটা Rating দিয়ে যা! ❤️
+        </p>
+
+        <div class="rating-buttons">
+
+            <button
+                class="rating-btn"
+                data-rating="bad"
+            >
+                😒 খুব খারাপ
+            </button>
+
+            <button
+                class="rating-btn"
+                data-rating="good"
+            >
+                🙂 ভালো
+            </button>
+
+            <button
+                class="rating-btn"
+                data-rating="excellent"
+            >
+                🤩 Excellent
+            </button>
+
+        </div>
+
+        <!-- BAD RESPONSE -->
+
+        <div class="rating-response" id="badResponse">
+
+            <p class="response-text">
+                আমি জানি এটা তোর মনের কথা নয়!
+                সত্যি করে রেট কর! 😂
+            </p>
+
+            <img
+                class="response-meme"
+                src="https://i.ibb.co/LhqCdh1y/Screenshot-2026-11-18-14-19-05-43-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"
+                alt="Jhooth bol raha hai meme"
+                loading="lazy"
+            >
+
+        </div>
+
+        <!-- GOOD RESPONSE -->
+
+        <div class="rating-response" id="goodResponse">
+
+            <p class="response-text">
+                ২০২৬ সালেও 2G নেটওয়ার্ক ব্যবহার করিস নাকি?
+                😂<br>
+                একবারে বুঝতে পারছিস না?!
+            </p>
+
+        </div>
+
+        <!-- EXCELLENT RESPONSE -->
+
+        <div class="rating-response" id="excellentResponse">
+
+            <p class="response-text">
+                এই তো আমার ভাই! ❤️🔥<br>
+                এবার পেলি তোর আসল সারপ্রাইজ! 🎉
+            </p>
+
+            <div class="final-surprise" id="finalSurprise">
+
+                <img
+                    src="https://i.ibb.co/760D2MT/Screenshot-2026-11-18-14-19-38-25-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"
+                    alt="Final birthday surprise"
+                    loading="lazy"
+                >
+
+                <p style="
+                    color:#ffd76a;
+                    font-size:24px;
+                    font-weight:800;
+                    margin-top:22px;
+                ">
+                    ১৫০ টাকার কার্ড আর ৫০ টাকার কার্ড! 😂💳
+                </p>
+
+                <p style="
+                    color:#ff8fc
